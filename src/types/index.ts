@@ -1,6 +1,6 @@
 export interface GenerateRequest {
     prompt: string
-    images: string[]
+    images?: string[]
     apikey: string
 }
 

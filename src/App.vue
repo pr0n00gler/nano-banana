@@ -15,7 +15,7 @@
                             🍌 Nano<br />
                             <span class="text-yellow-100 text-5xl">Banana</span>
                         </h1>
-                        <p class="text-white text-base font-medium">Upload your images and I'll create art!</p>
+                        <p class="text-white text-base font-medium">Upload inspiration images or let me create art from scratch!</p>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <div class="grid lg:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:items-stretch min-h-[400px]">
                 <!-- Left column: image upload -->
                 <div class="flex flex-col h-full">
-                    <div class="bg-pink-400 text-white font-bold px-4 py-2 rounded-t-lg border-4 border-black border-b-0 flex items-center gap-2">🍌 1. Upload images</div>
+                    <div class="bg-pink-400 text-white font-bold px-4 py-2 rounded-t-lg border-4 border-black border-b-0 flex items-center gap-2">🍌 1. Upload images (optional)</div>
                     <div class="flex-1">
                         <ImageUpload v-model="selectedImages" />
                     </div>
@@ -141,7 +141,22 @@ watch([selectedStyle, customPrompt], () => {
     }
 })
 
-const canGenerate = computed(() => apiKey.value.trim() && selectedImages.value.length > 0 && (selectedStyle.value || customPrompt.value.trim()) && !isLoading.value)
+const resolvePrompt = () => {
+    if (selectedStyle.value) {
+        const templatePrompt = styleTemplates.find(t => t.id === selectedStyle.value)?.prompt
+        return templatePrompt || customPrompt.value
+    }
+
+    return customPrompt.value
+}
+
+const canGenerate = computed(() => {
+    if (!apiKey.value.trim() || isLoading.value) {
+        return false
+    }
+
+    return resolvePrompt().trim().length > 0
+})
 
 const handleGenerate = async () => {
     if (!canGenerate.value) return
@@ -153,7 +168,7 @@ const handleGenerate = async () => {
 
     try {
         // Use the selected style template or the custom prompt
-        const prompt = selectedStyle.value ? styleTemplates.find(t => t.id === selectedStyle.value)?.prompt || customPrompt.value : customPrompt.value
+        const prompt = resolvePrompt()
 
         const request: GenerateRequest = {
             prompt,
