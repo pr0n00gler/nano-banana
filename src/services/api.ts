@@ -20,7 +20,7 @@ export async function generateImage(request: GenerateRequest): Promise<GenerateR
     ]
 
     const openrouterPayload = {
-        model: 'google/gemini-2.5-flash-image-preview:free',
+        model: 'google/gemini-2.5-flash-image-preview',
         messages
     }
 
