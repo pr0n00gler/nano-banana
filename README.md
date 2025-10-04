@@ -1,134 +1,134 @@
-# Nanobanana - 基于 OpenRouter 的图片生成 Web UI
+# Nanobanana - OpenRouter-Based Image Generation Web UI
 
-这是一个现代化的 Web 应用，使用 Vue3 + TypeScript + TailwindCSS 构建，直接调用 OpenRouter API 进行图片生成和多模态对话。
+This is a modern web application built with Vue 3, TypeScript, and TailwindCSS that calls the OpenRouter API directly for image generation and multimodal conversations.
 
-## 核心功能
+## Core Features
 
-### ✨ Web UI 功能
+### ✨ Web UI Capabilities
 
--   **多图上传**: 支持拖拽或点击上传多张本地图片，实时预览缩略图
--   **智能对话**: 输入文本提示词，结合上传的图片与 AI 进行多模态对话
--   **直接集成**: 前端直接调用 OpenRouter API，无需中间服务器
--   **现代化界面**: 使用 TailwindCSS 构建的响应式暗色主题界面
--   **实时反馈**: 加载状态、错误处理和结果展示
--   **类型安全**: 完整的 TypeScript 支持
+-   **Multiple Image Uploads**: Drag and drop or click to upload multiple local images with real-time thumbnail previews
+-   **Intelligent Conversations**: Enter text prompts and chat with the AI using your uploaded images in a multimodal workflow
+-   **Direct Integration**: The frontend calls the OpenRouter API directly—no intermediary server required
+-   **Modern Interface**: Responsive dark-theme UI powered by TailwindCSS
+-   **Real-Time Feedback**: Loading states, error handling, and result display
+-   **Type Safety**: Full TypeScript support throughout the project
 
-## 为何使用本项目？
+## Why Use This Project?
 
--   **纯前端应用**: 无需部署后端服务器，直接托管静态文件即可
--   **现代化技术栈**: Vue3 + TypeScript + TailwindCSS，开发体验优秀
--   **直接调用**: 前端直接调用 OpenRouter API，减少中间环节
--   **易于部署**: 可部署到任何静态托管服务（Vercel、Netlify、GitHub Pages 等）
+-   **Pure Frontend App**: No backend deployment needed—just host the static files
+-   **Modern Tech Stack**: Vue 3 + TypeScript + TailwindCSS for a great development experience
+-   **Direct API Calls**: Connect straight to the OpenRouter API to reduce extra layers
+-   **Easy Deployment**: Deploy to any static hosting service (Vercel, Netlify, GitHub Pages, etc.)
 
-## 技术栈
+## Tech Stack
 
--   **前端**: Vue 3 + TypeScript + TailwindCSS + Vite
--   **构建工具**: Vite (快速开发和构建)
--   **样式**: TailwindCSS (原子化 CSS 框架)
--   **AI 模型**: 直接调用 OpenRouter API，默认使用 `google/gemini-2.5-flash-image-preview:free`
+-   **Frontend**: Vue 3 + TypeScript + TailwindCSS + Vite
+-   **Build Tool**: Vite (fast development and builds)
+-   **Styling**: TailwindCSS (utility-first CSS framework)
+-   **AI Model**: Direct OpenRouter API access using `google/gemini-2.5-flash-image-preview:free` by default
 
-## 本地开发
+## Local Development
 
-### 前置要求
+### Prerequisites
 
 -   Node.js 18+
--   npm 或 yarn
+-   npm or yarn
 
-### 开发环境启动
+### Start the Development Environment
 
 ```bash
-# 安装依赖
+# Install dependencies
 npm install
 
-# 启动开发服务器
+# Start the development server
 npm run dev
 ```
 
-访问 http://localhost:3000 即可使用应用。
+Visit http://localhost:3000 to use the app.
 
-### 生产构建
+### Production Build
 
 ```bash
-# 构建生产版本
+# Build the production bundle
 npm run build
 
-# 预览构建结果
+# Preview the production build
 npm run preview
 ```
 
-## 部署
+## Deployment
 
-### 部署到 Vercel
+### Deploy to Vercel
 
-1. Fork 本项目到您的 GitHub
-2. 在 [Vercel](https://vercel.com) 中导入项目
-3. Vercel 会自动检测为 Vite 项目并部署
+1. Fork this project to your GitHub account
+2. Import the repository in [Vercel](https://vercel.com)
+3. Vercel will detect it as a Vite project and deploy automatically
 
-### 部署到 Netlify
+### Deploy to Netlify
 
-1. Fork 本项目到您的 GitHub
-2. 在 [Netlify](https://netlify.com) 中连接 GitHub 仓库
-3. 构建命令: `npm run build`
-4. 发布目录: `dist`
+1. Fork this project to your GitHub account
+2. Connect the GitHub repository in [Netlify](https://netlify.com)
+3. Build command: `npm run build`
+4. Publish directory: `dist`
 
-### 部署到 GitHub Pages
+### Deploy to GitHub Pages
 
-1. Fork 本项目
-2. 在项目设置中启用 GitHub Pages
-3. 使用 GitHub Actions 自动构建和部署
+1. Fork this project
+2. Enable GitHub Pages in the repository settings
+3. Use GitHub Actions to build and deploy automatically
 
-### 其他静态托管服务
+### Other Static Hosting Services
 
-本项目构建后生成纯静态文件，可以部署到任何静态托管服务：
+After building, the project outputs static files that can be hosted anywhere:
 
 -   Cloudflare Pages
 -   Firebase Hosting
 -   AWS S3 + CloudFront
--   等等
+-   And more
 
-## 如何使用
+## How to Use
 
-1. 打开部署后的网站
-2. 在 "设置" 部分输入您的 OpenRouter API Key
-3. 上传一张或多张图片（支持拖拽）
-4. 输入文本提示词，描述您想要的内容
-5. 点击 "生成" 按钮
-6. 等待 AI 生成结果
+1. Open the deployed website
+2. Enter your OpenRouter API key in the "Settings" section
+3. Upload one or more images (drag and drop supported)
+4. Enter a text prompt describing what you want
+5. Click the "Generate" button
+6. Wait for the AI to produce a result
 
-## 获取 OpenRouter API Key
+## Get an OpenRouter API Key
 
-1. 访问 [OpenRouter](https://openrouter.ai/)
-2. 注册账号并登录
-3. 在 API Keys 页面创建新的 API Key
-4. 将 API Key 输入到应用中即可使用
+1. Visit [OpenRouter](https://openrouter.ai/)
+2. Sign up and log in
+3. Create a new API key from the API Keys page
+4. Enter the API key into the app to get started
 
-## 项目结构
+## Project Structure
 
 ```
 src/
-├── components/          # Vue 组件
-│   ├── ApiKeyInput.vue     # API Key 输入组件
-│   ├── ImageUpload.vue     # 图片上传组件
-│   ├── PromptInput.vue     # 提示词输入组件
-│   ├── GenerateButton.vue  # 生成按钮组件
-│   └── ResultDisplay.vue   # 结果展示组件
-├── services/           # API 服务
-│   └── api.ts             # OpenRouter API 调用
-├── types/              # TypeScript 类型定义
+├── components/          # Vue components
+│   ├── ApiKeyInput.vue     # API key input component
+│   ├── ImageUpload.vue     # Image upload component
+│   ├── PromptInput.vue     # Prompt input component
+│   ├── GenerateButton.vue  # Generate button component
+│   └── ResultDisplay.vue   # Result display component
+├── services/           # API services
+│   └── api.ts             # OpenRouter API wrapper
+├── types/              # TypeScript type definitions
 │   └── index.ts
-├── App.vue             # 主应用组件
-├── main.ts             # 应用入口
-└── style.css           # TailwindCSS 样式
+├── App.vue             # Root application component
+├── main.ts             # Application entry point
+└── style.css           # TailwindCSS styles
 ```
 
-## 开发说明
+## Development Notes
 
--   使用 Vue 3 Composition API
--   完整的 TypeScript 支持
--   TailwindCSS 原子化样式
--   Vite 快速开发和构建
--   响应式设计，支持移动端
+-   Uses the Vue 3 Composition API
+-   Full TypeScript coverage
+-   Utility-first styles powered by TailwindCSS
+-   Fast development and builds with Vite
+-   Responsive design with mobile support
 
-## 许可证
+## License
 
 MIT License

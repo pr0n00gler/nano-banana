@@ -16,7 +16,7 @@
                 </div>
                 <p class="text-sm text-gray-600 mb-2">{{ template.description }}</p>
                 <div class="bg-gray-100 p-2 rounded text-xs text-gray-700 border">
-                    <strong>提示词预览：</strong>
+                    <strong>Prompt preview:</strong>
                     <p class="mt-1">{{ template.prompt.substring(0, 100) }}{{ template.prompt.length > 100 ? '...' : '' }}</p>
                 </div>
             </div>

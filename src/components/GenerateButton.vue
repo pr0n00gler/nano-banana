@@ -9,8 +9,8 @@
                 : 'bg-gradient-to-r from-orange-400 to-yellow-500 hover:from-orange-500 hover:to-yellow-600 hover:-translate-y-1 hover:shadow-xl'
         ]"
     >
-        <span v-if="!loading" class="flex items-center gap-3 text-xl">🍌 开始生成魔法！</span>
-        <span v-else class="flex items-center gap-3 text-xl">🍌 正在创造中...</span>
+        <span v-if="!loading" class="flex items-center gap-3 text-xl">🍌 Start the magic!</span>
+        <span v-else class="flex items-center gap-3 text-xl">🍌 Creating magic...</span>
 
         <div v-if="loading" class="w-8 h-8 border-3 border-white/30 border-t-white rounded-full animate-spin" />
     </button>

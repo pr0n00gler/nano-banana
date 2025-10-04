@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen bg-gradient-to-br from-yellow-200 via-yellow-300 to-orange-200 text-gray-900 relative overflow-hidden">
-        <!-- 香蕉装饰元素 -->
+        <!-- Banana decoration elements -->
         <div class="absolute top-10 left-10 text-6xl opacity-20 animate-bounce">🍌</div>
         <div class="absolute top-32 right-20 text-4xl opacity-30 animate-pulse">🍌</div>
         <div class="absolute bottom-20 left-32 text-5xl opacity-25 animate-bounce delay-1000">🍌</div>
@@ -15,12 +15,12 @@
                             🍌 Nano<br />
                             <span class="text-yellow-100 text-5xl">Banana</span>
                         </h1>
-                        <p class="text-white text-base font-medium">上传你的图片，我来创造艺术！</p>
+                        <p class="text-white text-base font-medium">Upload your images and I'll create art!</p>
                     </div>
                 </div>
             </div>
 
-            <!-- API设置区域 -->
+            <!-- API settings -->
             <div class="mb-6">
                 <div class="flex justify-center">
                     <button
@@ -31,34 +31,34 @@
                         ]"
                     >
                         <span>🔑</span>
-                        <span v-if="!apiKey">需要配置API密钥</span>
-                        <span v-else>API密钥已配置</span>
+                        <span v-if="!apiKey">API key required</span>
+                        <span v-else>API key configured</span>
                         <svg :class="['w-4 h-4 transition-transform', showApiSettings ? 'rotate-180' : '']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                 </div>
 
-                <!-- API设置折叠面板 -->
+                <!-- API settings accordion -->
                 <div v-if="showApiSettings" class="mt-4 max-w-2xl mx-auto">
                     <ApiKeyInput v-model="apiKey" />
                 </div>
             </div>
 
-            <!-- 主要内容区域：左右布局 -->
+            <!-- Main content: two-column layout -->
             <div class="grid lg:grid-cols-2 gap-4 lg:gap-6 mb-6 lg:items-stretch min-h-[400px]">
-                <!-- 左侧：上传图片 -->
+                <!-- Left column: image upload -->
                 <div class="flex flex-col h-full">
-                    <div class="bg-pink-400 text-white font-bold px-4 py-2 rounded-t-lg border-4 border-black border-b-0 flex items-center gap-2">🍌 1. 上传图片</div>
+                    <div class="bg-pink-400 text-white font-bold px-4 py-2 rounded-t-lg border-4 border-black border-b-0 flex items-center gap-2">🍌 1. Upload images</div>
                     <div class="flex-1">
                         <ImageUpload v-model="selectedImages" />
                     </div>
                 </div>
 
-                <!-- 右侧：选择风格或自定义提示词 -->
+                <!-- Right column: select style or custom prompt -->
                 <div class="flex flex-col h-full">
                     <div class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold px-4 py-2 rounded-t-lg border-4 border-black border-b-0 flex items-center gap-2">
-                        🎨 2. 选择风格或自定义提示词
+                        🎨 2. Choose a style or write your own prompt
                     </div>
                     <div class="flex-1">
                         <StylePromptSelector v-model:selectedStyle="selectedStyle" v-model:customPrompt="customPrompt" :templates="styleTemplates" />
@@ -66,14 +66,14 @@
                 </div>
             </div>
 
-            <!-- 生成按钮 -->
+            <!-- Generate button -->
             <div class="mb-6">
                 <GenerateButton :loading="isLoading" :disabled="!canGenerate" @click="handleGenerate" />
             </div>
 
-            <!-- 生成结果区域：全宽 -->
+            <!-- Generation results: full width -->
             <div class="w-full">
-                <div class="bg-black text-white font-bold px-4 py-2 rounded-t-lg border-4 border-black border-b-0 flex items-center gap-2">✨ 3. 生成结果</div>
+                <div class="bg-black text-white font-bold px-4 py-2 rounded-t-lg border-4 border-black border-b-0 flex items-center gap-2">✨ 3. Results</div>
                 <ResultDisplay :result="result" :loading="isLoading" :error="error" />
             </div>
         </div>
@@ -105,25 +105,25 @@ const result = ref<string | null>(null)
 const error = ref<string | null>(null)
 const showApiSettings = ref(false)
 
-// 组件挂载时从本地存储读取API密钥
+// Read the API key from local storage when the component mounts
 onMounted(() => {
     const savedApiKey = LocalStorage.getApiKey()
     if (savedApiKey) {
         apiKey.value = savedApiKey
         showApiSettings.value = false
     } else {
-        // 如果没有API密钥，自动展开设置面板
+        // If there's no API key, open the settings panel automatically
         showApiSettings.value = true
     }
 })
 
-// 监听API密钥变化，自动保存到本地存储
+// Persist API key changes to local storage
 watch(
     apiKey,
     (newApiKey: string) => {
         if (newApiKey.trim()) {
             LocalStorage.saveApiKey(newApiKey)
-            // 当API密钥配置成功后，延迟关闭设置面板
+            // After the API key is saved, close the settings panel after a short delay
             setTimeout(() => {
                 showApiSettings.value = false
             }, 1500)
@@ -132,9 +132,9 @@ watch(
     { immediate: false }
 )
 
-// 监听风格和提示词变化，清除之前的生成结果
+// Reset previous generation results when the style or prompt changes
 watch([selectedStyle, customPrompt], () => {
-    // 当用户改变风格或提示词时，清除之前的结果和错误
+    // Clear prior results and errors whenever the user changes the style or prompt
     if (result.value || error.value) {
         result.value = null
         error.value = null
@@ -148,11 +148,11 @@ const handleGenerate = async () => {
 
     isLoading.value = true
     error.value = null
-    // 立即清除之前的结果，确保用户看到新的生成过程
+    // Clear the previous result immediately so the user sees the new generation process
     result.value = null
 
     try {
-        // 使用选中的样式模板或自定义提示词
+        // Use the selected style template or the custom prompt
         const prompt = selectedStyle.value ? styleTemplates.find(t => t.id === selectedStyle.value)?.prompt || customPrompt.value : customPrompt.value
 
         const request: GenerateRequest = {
@@ -164,8 +164,8 @@ const handleGenerate = async () => {
         const response = await generateImage(request)
         result.value = response.imageUrl
     } catch (err) {
-        error.value = err instanceof Error ? err.message : '生成失败'
-        // 生成失败时也要清除结果
+        error.value = err instanceof Error ? err.message : 'Generation failed'
+        // Also clear the result when generation fails
         result.value = null
     } finally {
         isLoading.value = false
