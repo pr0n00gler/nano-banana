@@ -4,15 +4,17 @@ const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 
 export async function generateImage(request: GenerateRequest): Promise<GenerateResponse> {
     // Build the OpenRouter API request payload
+    const imageContent = (request.images ?? []).map(img => ({
+        type: 'image_url' as const,
+        image_url: { url: img }
+    }))
+
     const messages = [
         {
             role: 'user',
             content: [
                 { type: 'text', text: request.prompt },
-                ...request.images.map(img => ({
-                    type: 'image_url',
-                    image_url: { url: img }
-                }))
+                ...imageContent
             ]
         }
     ]
