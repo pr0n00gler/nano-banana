@@ -3,7 +3,7 @@ import type { GenerateRequest, GenerateResponse } from '../types'
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 
 export async function generateImage(request: GenerateRequest): Promise<GenerateResponse> {
-    // 构建OpenRouter API请求格式
+    // Build the OpenRouter API request payload
     const messages = [
         {
             role: 'user',
@@ -44,17 +44,17 @@ export async function generateImage(request: GenerateRequest): Promise<GenerateR
 
     const message = data.choices[0].message
 
-    // 检查是否返回图片
+    // Check if an image URL was returned
     if (message.images?.[0]?.image_url?.url) {
         return { imageUrl: message.images[0].image_url.url }
     }
 
-    // 检查content是否是base64图片
+    // Check whether the content field is a base64-encoded image
     if (typeof message.content === 'string' && message.content.startsWith('data:image/')) {
         return { imageUrl: message.content }
     }
 
-    // 如果是文本回复，抛出错误或返回文本
+    // If the model responded with text, throw an error
     if (typeof message.content === 'string' && message.content.trim()) {
         throw new Error(`Model returned text instead of image: ${message.content}`)
     }

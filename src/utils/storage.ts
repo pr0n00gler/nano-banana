@@ -1,32 +1,32 @@
-// 本地存储工具类
+// Local storage utility class
 export class LocalStorage {
     private static readonly API_KEY = 'nano-banana-api-key'
 
-    // 保存API密钥
+    // Save the API key
     static saveApiKey(apiKey: string): void {
         try {
             localStorage.setItem(this.API_KEY, apiKey)
         } catch (error) {
-            console.warn('无法保存API密钥到本地存储:', error)
+            console.warn('Failed to save API key to local storage:', error)
         }
     }
 
-    // 获取API密钥
+    // Retrieve the API key
     static getApiKey(): string {
         try {
             return localStorage.getItem(this.API_KEY) || ''
         } catch (error) {
-            console.warn('无法从本地存储读取API密钥:', error)
+            console.warn('Failed to read API key from local storage:', error)
             return ''
         }
     }
 
-    // 清除API密钥
+    // Clear the API key
     static clearApiKey(): void {
         try {
             localStorage.removeItem(this.API_KEY)
         } catch (error) {
-            console.warn('无法清除本地存储的API密钥:', error)
+            console.warn('Failed to clear the API key from local storage:', error)
         }
     }
 }

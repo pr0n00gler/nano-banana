@@ -29,9 +29,9 @@
                 </div>
             </div>
 
-            <h3 class="text-lg font-bold mb-2 flex items-center justify-center gap-2">🍌 拖拽上传</h3>
-            <p class="text-gray-600 mb-1">或点击浏览文件</p>
-            <p class="text-sm text-gray-500">支持多张图片 JPG, PNG, GIF 格式 (最大 5MB)</p>
+            <h3 class="text-lg font-bold mb-2 flex items-center justify-center gap-2">🍌 Drag to upload</h3>
+            <p class="text-gray-600 mb-1">or click to browse files</p>
+            <p class="text-sm text-gray-500">Supports multiple JPG, PNG, or GIF images (max 5 MB)</p>
         </div>
 
         <!-- Thumbnails -->
@@ -70,7 +70,7 @@ const handleFileSelect = (event: Event) => {
     const target = event.target as HTMLInputElement
     if (target.files) {
         handleFiles(Array.from(target.files))
-        // 重置input的value，允许重新上传相同的文件
+        // Reset the input value so the same file can be uploaded again
         target.value = ''
     }
 }
